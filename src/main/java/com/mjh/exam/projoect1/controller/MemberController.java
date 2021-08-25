@@ -18,7 +18,7 @@ public class MemberController {
 	
 	@RequestMapping("/usr/member/join")
 	@ResponseBody
-	public String join(HttpSession session,String loginId, String loginPw, String name, 
+	public String join(String loginId, String loginPw, String name, 
 			String nickname, String email, String cellphoneNo) {
 		
 		if(loginId.isEmpty() || loginId.trim().length()==0) {
