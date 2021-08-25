@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mjh.exam.projoect1.repository.MemberRepository">
+	<select id="getMemberById" resultType="Member">
+		select * 
+		from member
+		where loginId =#{loginId}
+	</select>
+	
+	<insert id="dojoin" >
+		INSERT INTO member
+		set regDate = now(),
+		updateDate = now(),
+		loginId = #{loginId},
+		loginPw = #{loginPw},
+		email = #{email},
+		name = #{name},
+		nickname = #{nickname},
+		cellphoneNo = #{cellphoneNo}
+	</insert>
+
+</mapper>

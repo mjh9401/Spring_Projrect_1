@@ -30,4 +30,53 @@ updateDate = NOW(),
 title = '제목 3',
 BODY = '내용 3'; 
 
+# 회원테이블생성
+CREATE TABLE `member`(
+    id INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    regDate DATETIME NOT NULL,
+    updateDate DATETIME NOT NULL,
+    loginId CHAR(20) NOT NULL,
+    loginPw CHAR(60) NOT NULL,
+    email CHAR(60) NOT NULL,
+    cellphoneNo CHAR(60) NOT NULL,
+    `name` CHAR(60) NOT NULL,
+    nickname CHAR(60) NOT NULL,
+    authLevel SMALLINT(2) UNSIGNED NOT NULL DEFAULT 3 COMMENT '권한레벨(3=일반, 7=관리자)',
+    delStatus TINYINT(1) UNSIGNED NOT NULL DEFAULT 0 COMMENT '탈퇴여부(0=탈퇴전, 1=탈회후)',
+    delDate DATETIME COMMENT '탈퇴날짜' 
+);
+
+# 회원생성
+INSERT INTO `member`
+SET regDate = NOW(),
+updateDate = NOW(),
+loginId = 'user1',
+loginPw = 'user1',
+email = 'usr1@naver.com',
+cellphoneNo = '01012341234',
+`name` = '사용자1',
+nickname = '사용자1';
+
+INSERT INTO `member`
+SET regDate = NOW(),
+updateDate = NOW(),
+loginId = 'user2',
+loginPw = 'user2',
+email = 'usr2@naver.com',
+cellphoneNo = '01022331234',
+`name` = '사용자2',
+nickname = '사용자2';
+
+INSERT INTO `member`
+SET regDate = NOW(),
+updateDate = NOW(),
+loginId = 'user1',
+loginPw = 'user1',
+email = 'usr3@naver.com',
+cellphoneNo = '01033223212',
+`name` = '사용자3',
+nickname = '사용자3';    
+   
+  
 SELECT * FROM article;
+SELECT * FROM `member`;
