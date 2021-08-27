@@ -9,6 +9,12 @@
 		where loginId =#{loginId}
 	</select>
 	
+	<select id="getMemberByMemberId" resultType="int">
+		select * 
+		from member
+		where id =#{id}
+	</select>
+	
 	<insert id="dojoin" >
 		INSERT INTO member
 		set regDate = now(),

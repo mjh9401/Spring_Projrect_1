@@ -19,4 +19,5 @@ public class Member {
 	private String cellphoneNo;
 	private int authLevel;
 	private boolean delStatus;
+	
 }

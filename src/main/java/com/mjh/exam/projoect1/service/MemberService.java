@@ -21,4 +21,8 @@ public class MemberService {
 		memberRepository.dojoin(loginId,loginPw,name,nickname,email,cellphoneNo);
 	}
 
+	public Member getMemberById(int loginedMemberId) {
+		return memberRepository.getMemberByMemberId(loginedMemberId);
+	}
+
 }

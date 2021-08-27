@@ -13,6 +13,8 @@ public interface MemberRepository {
 	public void dojoin(@Param("loginId") String loginId,
 			@Param("loginPw") String loginPw,@Param("name") String name, 
 			@Param("nickname") String nickname,@Param("email") String email,
-			@Param("cellphoneNo") String cellphoneNo);	
+			@Param("cellphoneNo") String cellphoneNo);
+
+	public Member getMemberByMemberId(@Param("loginedMemberId") int loginedMemberId);	
 
 }

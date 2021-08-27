@@ -1,7 +1,5 @@
 package com.mjh.exam.projoect1.controller;
 
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,15 +7,18 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.mjh.exam.projoect1.Ut.Ut;
 import com.mjh.exam.projoect1.service.MemberService;
 import com.mjh.exam.projoect1.vo.Member;
-import com.mjh.exam.projoect1.vo.Ut;
+import com.mjh.exam.projoect1.vo.Rq;
 
 @Controller
 public class MemberController {
 	@Autowired
 	private MemberService memberService;
-	boolean isLogined = false;
+	@Autowired
+	private Rq rq;
+
 	
 	@RequestMapping("/usr/member/join")
 	@ResponseBody
@@ -56,15 +57,9 @@ public class MemberController {
 	
 	@RequestMapping("/usr/member/dologin")
 	@ResponseBody
-	public String dologin(HttpServletRequest req ,String loginId,String loginPw) {
-		HttpSession session = req.getSession();
-		
-		if(session.getAttribute("loginedMemberId") != null) {
-			isLogined = true;
-		}
-		
-		if(isLogined) {
-			return Ut.jsHistoryBack("이미 로그인 됐습니다.");
+	public String dologin(String loginId,String loginPw) {
+		if(rq.isLogined()) {
+			return Ut.jsHistoryBack("이미 로그인중입니다.");
 		}
 		
 		if(loginId.isEmpty() || loginId.trim().length()==0) {
@@ -85,27 +80,22 @@ public class MemberController {
 			return Ut.jsHistoryBack("비밀번호가 일치하지 않습니다.");
 		}
 		
-		session.setAttribute("loginedMember", member);
+		rq.login(member);
 		
 		return Ut.jsReplace(Ut.f("%s님 환영합니다.",member.getNickname()),"/");
 	}
 	
-	@RequestMapping("/usr/member/logout")
+	@RequestMapping("/usr/member/doLogout")
 	@ResponseBody
-	public String logout(HttpSession session) {
-		Member member = (Member) session.getAttribute("loginedMember");
-		
-		if(member != null) {
-			isLogined = true;
-		}
-		
-		if(isLogined == false) {
+	public String doLogout(HttpSession session) {
+				
+		if(rq.isLogined() == false) {
 			return "로그아웃상태 입니다.";
 		}
 		
-		session.removeAttribute("loginedMemberId");
+		rq.logout();
 		
-		return member.getName()+"님 로그아웃됐습니다.";
+		return Ut.jsReplace("로그아웃됐습니다.", "/");
 	}
 	
 }

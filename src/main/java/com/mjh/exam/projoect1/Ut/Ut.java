@@ -1,4 +1,4 @@
-package com.mjh.exam.projoect1.vo;
+package com.mjh.exam.projoect1.Ut;
 
 public class Ut {
 	
