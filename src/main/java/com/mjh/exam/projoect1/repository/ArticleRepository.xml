@@ -12,8 +12,15 @@
 	
 	<update id="update">
 		UPDATE article
-		set title = #{title},
-		body = #{body}
+		<set>
+			<if test="title != null and title !=''">
+				title = #{title},
+			</if>
+			<if test="body != null and body !=''">
+				body = #{body}
+			</if>
+			updateDate = now()
+		</set>
 		where id = #{id}
 	</update>
 	
@@ -25,11 +32,16 @@
 	
 	<select id="list" resultType="Article">
 		SELECT * FROM article
+		order by id desc
 	</select>
 	
 	<select id="detail" resultType="Article">
-		SELECT * FROM article
-		where id = #{id}
+		SELECT A.*, 
+		M.nickname AS extra_writerName
+		FROM article AS A
+		LEFT JOIN `member` AS M
+		ON A.memberId = M.id
+		WHERE A.id = #{id};
 	</select>
 
 </mapper>

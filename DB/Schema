@@ -76,7 +76,15 @@ email = 'usr3@naver.com',
 cellphoneNo = '01033223212',
 `name` = '사용자3',
 nickname = '사용자3';    
-   
+
+#article테이블에 memberId 추가   
+ALTER TABLE article ADD COLUMN memberId INT(10) UNSIGNED NOT NULL;
+
+ 
+#memberId=0을 다른값으로 변경
+UPDATE article
+SET memberId = 2
+WHERE memberId = 0;
   
 SELECT * FROM article;
 SELECT * FROM `member`;
