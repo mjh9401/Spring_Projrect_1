@@ -45,6 +45,11 @@
             <span>게시글</span>
           </a>
         </li>    
+        <li>
+          <a class="h-full flex px-3 items-center hover:underline" href="/usr/member/login">
+            <span>로그인</span>
+          </a>
+        </li>    
       </ul>
     </div>
   </header>

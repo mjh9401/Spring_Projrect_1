@@ -1,5 +1,7 @@
 package com.mjh.exam.projoect1.controller;
 
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,10 +47,17 @@ public class MemberController {
 		return name+"님 회원가입 완료되었습니다.";
 	}
 	
-
 	@RequestMapping("/usr/member/login")
+	public String login() {
+		
+		return "usr/member/login";
+	}
+	
+	@RequestMapping("/usr/member/dologin")
 	@ResponseBody
-	public String login(HttpSession session ,String loginId,String loginPw) {
+	public String dologin(HttpServletRequest req ,String loginId,String loginPw) {
+		HttpSession session = req.getSession();
+		
 		if(session.getAttribute("loginedMemberId") != null) {
 			isLogined = true;
 		}

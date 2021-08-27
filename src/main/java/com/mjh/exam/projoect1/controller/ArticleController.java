@@ -16,8 +16,14 @@ public class ArticleController {
 	@Autowired
 	private ArticleService articleService;
 	
+	
 	@RequestMapping("/usr/article/write")
-	@ResponseBody
+	public String showwrite() {
+	
+		return "usr/article/write";
+	}
+	
+	@RequestMapping("/usr/article/doWrite")
 	public void write(String title,String body) {
 		articleService.write(title,body);
 	}

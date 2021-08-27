@@ -70,8 +70,8 @@ nickname = '사용자2';
 INSERT INTO `member`
 SET regDate = NOW(),
 updateDate = NOW(),
-loginId = 'user1',
-loginPw = 'user1',
+loginId = 'user3',
+loginPw = 'user3',
 email = 'usr3@naver.com',
 cellphoneNo = '01033223212',
 `name` = '사용자3',
