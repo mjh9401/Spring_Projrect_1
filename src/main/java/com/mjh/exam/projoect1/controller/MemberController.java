@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mjh.exam.projoect1.service.MemberService;
 import com.mjh.exam.projoect1.vo.Member;
+import com.mjh.exam.projoect1.vo.Ut;
 
 @Controller
 public class MemberController {
@@ -63,30 +64,30 @@ public class MemberController {
 		}
 		
 		if(isLogined) {
-			return "이미 로그인 됐습니다.";
+			return Ut.jsHistoryBack("이미 로그인 됐습니다.");
 		}
 		
 		if(loginId.isEmpty() || loginId.trim().length()==0) {
-			return "loginId를 입력해주세요";
+			return Ut.jsHistoryBack("loginId를 입력해주세요");
 		}
 		
 		if(loginPw.isEmpty() || loginId.trim().length()==0) {
-			return "loginPw를 입력해주세요";
+			return Ut.jsHistoryBack("loginPw를 입력해주세요");
 		}
 		
 		Member member = memberService.getMemberById(loginId);
 		
 		if(member == null) {
-			return "존재하지 않는 아이디입니다.";
+			return Ut.jsHistoryBack("존재하지 않는 아이디입니다.");
 		}
 		
 		if(member.getLoginPw().equals(loginPw) == false) {
-			return "비밀번호가 일치하지 않습니다.";
+			return Ut.jsHistoryBack("비밀번호가 일치하지 않습니다.");
 		}
 		
 		session.setAttribute("loginedMember", member);
 		
-		return member.getName()+"님 환영합니다.";
+		return Ut.jsReplace(Ut.f("%s님 환영합니다.",member.getNickname()),"/");
 	}
 	
 	@RequestMapping("/usr/member/logout")
