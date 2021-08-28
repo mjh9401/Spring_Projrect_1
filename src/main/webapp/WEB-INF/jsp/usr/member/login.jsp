@@ -6,7 +6,7 @@
 
 <section class="mt-5">
   <div class="container mx-auto px-3">
-   <form action="../member/dologin">
+   <form action="../member/dologin" method="post">
      <div class="table-box-type-2">
        <table>
          <colgroup>

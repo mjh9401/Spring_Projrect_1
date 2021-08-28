@@ -11,8 +11,8 @@ public class MemberService {
 	@Autowired
 	private MemberRepository memberRepository;
 	
-	public Member getMemberById(String loginId) {
-		return memberRepository.getMemberById(loginId);
+	public Member getMemberByLoginId(String loginId) {
+		return memberRepository.getMemberByLoginId(loginId);
 	}
 
 	public void dojoin(String loginId, String loginPw, String name, String nickname, String email,
@@ -22,7 +22,7 @@ public class MemberService {
 	}
 
 	public Member getMemberById(int loginedMemberId) {
-		return memberRepository.getMemberByMemberId(loginedMemberId);
+		return memberRepository.getMemberById(loginedMemberId);
 	}
 
 }

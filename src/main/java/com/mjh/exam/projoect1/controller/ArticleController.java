@@ -10,12 +10,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mjh.exam.projoect1.service.ArticleService;
 import com.mjh.exam.projoect1.vo.Article;
+import com.mjh.exam.projoect1.vo.Rq;
 
 @Controller
 public class ArticleController {
 	@Autowired
 	private ArticleService articleService;
-	
+
 	
 	@RequestMapping("/usr/article/write")
 	public String showwrite() {

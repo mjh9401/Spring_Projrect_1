@@ -8,13 +8,14 @@ import com.mjh.exam.projoect1.vo.Member;
 @Mapper
 public interface MemberRepository {
 
-	public Member getMemberById(@Param("loginId") String loginId);
+	public Member getMemberByLoginId(@Param("loginId") String loginId);
 
 	public void dojoin(@Param("loginId") String loginId,
 			@Param("loginPw") String loginPw,@Param("name") String name, 
 			@Param("nickname") String nickname,@Param("email") String email,
 			@Param("cellphoneNo") String cellphoneNo);
 
-	public Member getMemberByMemberId(@Param("loginedMemberId") int loginedMemberId);	
+	public Member getMemberById(@Param("loginedMemberId") int loginedMemberId);
+
 
 }

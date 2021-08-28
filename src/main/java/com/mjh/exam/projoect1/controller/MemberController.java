@@ -4,6 +4,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -50,7 +51,8 @@ public class MemberController {
 	}
 	
 	@RequestMapping("/usr/member/login")
-	public String login() {
+	public String login(Model model) {
+		model.addAttribute("rq", rq);
 		
 		return "usr/member/login";
 	}
@@ -58,6 +60,7 @@ public class MemberController {
 	@RequestMapping("/usr/member/dologin")
 	@ResponseBody
 	public String dologin(String loginId,String loginPw) {
+		
 		if(rq.isLogined()) {
 			return Ut.jsHistoryBack("이미 로그인중입니다.");
 		}
@@ -70,7 +73,7 @@ public class MemberController {
 			return Ut.jsHistoryBack("loginPw를 입력해주세요");
 		}
 		
-		Member member = memberService.getMemberById(loginId);
+		Member member = memberService.getMemberByLoginId(loginId);
 		
 		if(member == null) {
 			return Ut.jsHistoryBack("존재하지 않는 아이디입니다.");
@@ -81,6 +84,7 @@ public class MemberController {
 		}
 		
 		rq.login(member);
+		
 		
 		return Ut.jsReplace(Ut.f("%s님 환영합니다.",member.getNickname()),"/");
 	}
@@ -93,7 +97,7 @@ public class MemberController {
 			return "로그아웃상태 입니다.";
 		}
 		
-		rq.logout();
+		rq.logoout();
 		
 		return Ut.jsReplace("로그아웃됐습니다.", "/");
 	}
