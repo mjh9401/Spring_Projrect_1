@@ -59,6 +59,11 @@ public class Rq {
 	public void logoout() {
 		Session.removeAttribute("loginedMemberId");
 	}
+
+
+	public void initOnBeforeActionInterceptor() {
+		
+	}
 	
 	
 }

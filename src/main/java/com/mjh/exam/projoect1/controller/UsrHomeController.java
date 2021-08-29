@@ -15,7 +15,7 @@ public class UsrHomeController {
 	@RequestMapping("/usr/home/main")
 	public String main(Model model) {
 		
-		model.addAttribute("rq", rq);
+//		model.addAttribute("rq", rq);
 		
 		return "usr/home/main";
 	}
